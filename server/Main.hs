@@ -11,4 +11,4 @@ main :: IO ()
 main = do
   todos <- newTVarIO []
   putStrLn "Running on port 8000"
-  run 8000 $ serve (Proxy :: Proxy TodoAPI) (server todos)
+  run 8000 $ serve (Proxy :: Proxy API) (serverWithSwaggerUI todos)

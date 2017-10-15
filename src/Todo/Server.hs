@@ -4,6 +4,7 @@ import Control.Concurrent.STM
 import Control.Monad.IO.Class
 import Todo.API
 import Servant
+import Servant.Swagger.UI
 
 type TodoState = [Todo]
 
@@ -44,3 +45,10 @@ updateTodoById s (TodoId i) todo = do
   if success
     then return (TodoId i)
     else throwError err404
+
+-- ================================================================
+-- Swagger UI
+-- ================================================================
+
+serverWithSwaggerUI :: TVar TodoState -> Server API
+serverWithSwaggerUI s = swaggerSchemaUIServer todoSwagger :<|> server s

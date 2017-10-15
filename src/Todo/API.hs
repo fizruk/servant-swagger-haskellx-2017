@@ -20,6 +20,7 @@ import           Data.Typeable              (Typeable)
 import           GHC.Generics
 import           Servant
 import           Servant.Swagger
+import           Servant.Swagger.UI
 
 todoAPI :: Proxy TodoAPI
 todoAPI = Proxy
@@ -65,3 +66,12 @@ todoSwagger = toSwagger todoAPI
 -- | Output generated @swagger.json@ file for the @'TodoAPI'@.
 writeSwaggerJSON :: IO ()
 writeSwaggerJSON = BL8.writeFile "swagger.json" (encodePretty todoSwagger)
+
+-- ================================================================
+-- Swagger UI
+-- ================================================================
+
+-- | API type with bells and whistles, i.e. schema file and swagger-ui.
+type API
+    = SwaggerSchemaUI "swagger-ui" "swagger.json"
+ :<|> TodoAPI
