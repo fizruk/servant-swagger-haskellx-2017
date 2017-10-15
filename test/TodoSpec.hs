@@ -11,7 +11,7 @@ import           Servant.Swagger.Test
 import           Test.Hspec
 import           Test.QuickCheck
 import           Test.QuickCheck.Instances  ()
-import           Todo
+import           Todo.API
 
 spec :: Spec
 spec = describe "Swagger" $ do

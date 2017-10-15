@@ -40,8 +40,7 @@ data Todo = Todo
 -- | A unique Todo entry ID.
 newtype TodoId = TodoId Int
   deriving (Show, Generic, Typeable)
-  deriving anyclass (ToJSON)
-  deriving newtype (FromHttpApiData)
+  deriving newtype (ToJSON, FromHttpApiData)
 
 -- ================================================================
 -- Swagger stuff
